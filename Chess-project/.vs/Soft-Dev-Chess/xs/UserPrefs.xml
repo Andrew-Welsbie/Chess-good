@@ -1,0 +1,40 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MoveSelector.cs">
+    <Files>
+      <File FileName="Assets/Scripts/GameManager.cs" Line="424" Column="10" />
+      <File FileName="Assets/Scripts/Board.cs" />
+      <File FileName="Assets/Scripts/MoveSelector.cs" Line="109" Column="1" />
+      <File FileName="Assets/Scripts/Geometry.cs" />
+      <File FileName="Assets/Scripts/Player.cs" />
+      <File FileName="Assets/CamPlacement.cs" />
+      <File FileName="Assets/Scripts/Pieces/Piece.cs" />
+      <File FileName="Assets/Scripts/Pieces/Bishop.cs" />
+      <File FileName="Assets/Scripts/Pieces/Knight.cs" />
+      <File FileName="Assets/Scripts/Pieces/King.cs" />
+      <File FileName="Assets/Scripts/Pieces/Pawn.cs" />
+      <File FileName="Assets/Scripts/Pieces/Queen.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Soft-Dev-Chess" expanded="True">
+            <Node name="Assembly-CSharp" expanded="True">
+              <Node name="Assets" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="Pieces" expanded="True" />
+                  <Node name="MoveSelector.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
