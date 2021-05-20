@@ -17,6 +17,8 @@ public abstract class Piece : MonoBehaviour
 
     public abstract List<Vector2Int> MoveLocations(Vector2Int gridPoint);
 
+
+
     public static implicit operator Piece(bool v)
     {
         throw new NotImplementedException();

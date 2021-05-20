@@ -82,9 +82,17 @@ public class MoveSelector : MonoBehaviour
 
                     
                     GameObject[,] pieces = GameManager.instance.getPieces();
+                    Vector2Int gpCopy = gridPoint;
 
 
                     GameManager.instance.Move(movingPiece, gridPoint);
+                    bool isInCheck = GameManager.instance.check(true);
+                    
+                    if (isInCheck)
+                    {
+                        Debug.Log("that would be self killing....");
+                        GameManager.instance.Move(movingPiece, gpCopy);
+                    }
                     
                     if (gridPoint.y == 0)
                     {
@@ -106,7 +114,7 @@ public class MoveSelector : MonoBehaviour
 
                 }
 
-                GameManager.instance.check();
+                
 
 
                 // Reference Point 3: capture enemy piece here later

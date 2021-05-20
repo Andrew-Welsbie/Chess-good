@@ -36,17 +36,17 @@ public class King : Piece
         {
             locations.Add(right);
         }
-        Vector2Int backLeft = new Vector2Int(gridPoint.x - 1, gridPoint.y - 1);
+        Vector2Int backLeft = new Vector2Int(gridPoint.x - 1, gridPoint.y - forwardDirection);
         if (GameManager.instance.PieceAtGrid(backLeft) == false)
         {
             locations.Add(backLeft);
         }
-        Vector2Int backRight = new Vector2Int(gridPoint.x + 1, gridPoint.y - 1);
+        Vector2Int backRight = new Vector2Int(gridPoint.x + 1, gridPoint.y - forwardDirection);
         if (GameManager.instance.PieceAtGrid(backRight) == false)
         {
             locations.Add(backRight);
         }
-        Vector2Int back = new Vector2Int(gridPoint.x, gridPoint.y - 1);
+        Vector2Int back = new Vector2Int(gridPoint.x, gridPoint.y - forwardDirection);
         if (GameManager.instance.PieceAtGrid(back) == false)
         {
             locations.Add(back);
@@ -78,17 +78,17 @@ public class King : Piece
         {
             locations.Add(rightAttc);
         }
-        Vector2Int backAttc = new Vector2Int(gridPoint.x, gridPoint.y - 1);
+        Vector2Int backAttc = new Vector2Int(gridPoint.x, gridPoint.y - forwardDirection);
         if (GameManager.instance.PieceAtGrid(backAttc))
         {
             locations.Add(backAttc);
         }
-        Vector2Int backLeftAttc = new Vector2Int(gridPoint.x - 1, gridPoint.y - 1);
+        Vector2Int backLeftAttc = new Vector2Int(gridPoint.x - 1, gridPoint.y - forwardDirection);
         if (GameManager.instance.PieceAtGrid(backLeftAttc))
         {
             locations.Add(backLeftAttc);
         }
-        Vector2Int backRightAttc = new Vector2Int(gridPoint.x + 1, gridPoint.y - 1);
+        Vector2Int backRightAttc = new Vector2Int(gridPoint.x + 1, gridPoint.y - forwardDirection);
         if (GameManager.instance.PieceAtGrid(backRightAttc))
         {
             locations.Add(backRightAttc);

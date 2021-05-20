@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     public static bool CamPlace = false;
     public Camera firstPersonCamera;
     public Camera overheadCamera;
-    public int checkCount = 0;
 
 
     public GameObject[,] getPieces()
@@ -313,6 +312,8 @@ public class GameManager : MonoBehaviour
             ShowFirstPersonView();
         }
         Player tempPlayer = currentPlayer;
+        check(false);
+        
         currentPlayer = otherPlayer;
         otherPlayer = tempPlayer;
         
@@ -341,32 +342,61 @@ public class GameManager : MonoBehaviour
         CamPlace = false;
     }
 
-    public void check()
-    {
-   
+    //public bool checkmate()
+    //{
+    //    bool inCheckmate = true;
 
-        List<GameObject> ps = currentPlayer.getPieces();
-        List<GameObject> ps2 = otherPlayer.getPieces();
+    //    List<GameObject> ps = currentPlayer.getPieces();
+    //    List<GameObject> ps2 = otherPlayer.getPieces();
+    //    List<GameObject> psTemp = new List<GameObject>();
+    //    foreach (GameObject p in ps)
+    //    {
+
+    //    }
+    //    List<GameObject> ps2Temp = otherPlayer.getPieces();
+
+    //    //GameObject king = new GameObject();
+    //    //Vector2Int kingPos = new Vector2Int();
+
+    //    foreach (GameObject p in ps)
+    //    {
+    //        Debug.Log("CHECKMATE!!!!!!!!!");
+    //    }
+
+
+
+    //    return inCheckmate;
+    //}
+
+    public bool check(bool flip)
+    {
+        List<GameObject> ps;
+        List<GameObject> ps2;
+
+        if (flip == false) {
+        ps = currentPlayer.getPieces();
+        ps2 = otherPlayer.getPieces();
+        }
+        else
+        {
+            ps2 = currentPlayer.getPieces();
+            ps = otherPlayer.getPieces();
+        }
+
         GameObject king = new GameObject();
         Vector2Int kingPos = new Vector2Int();
         for (int i = 0; i < ps2.ToArray().Length; i++)
         {
             if (i < ps2.ToArray().Length)
             {
-
                 if (ps2[i].name.Contains("King"))
                 {
-                    Debug.Log("KINZG FOUND");
+                    
                     king = ps2[i];
-                    Debug.Log("SIFNDFGNJS");
                     kingPos = Geometry.GridFromPoint(king.transform.position);
-                    Debug.Log(kingPos.x);
-                    Debug.Log(kingPos.y);
+                    
                 }
-
-
             }
-
         }
 
         List<Vector2Int> moveLocations4 = new List<Vector2Int>();
@@ -390,39 +420,34 @@ public class GameManager : MonoBehaviour
         }
 
 
-
-
-
         bool incheck = false;
         if (moveLocationsThatWorks.Contains(kingPos))
         {
 
             Debug.Log("check");
             incheck = true;
-            checkCount++;
-            Debug.Log(checkCount);
 
         }
-      
+
+
         
-            
-        
+        return incheck;
 
         
     
 
 
     }
-    public void CheckMate()
-    {
-        if (checkCount == 2)
-        {
-            Debug.Log("checkmate");
-            Debug.Log(currentPlayer.name + " wins!");
-            Destroy(board.GetComponent<TileSelector>());
-            Destroy(board.GetComponent<MoveSelector>());
-        }
-    }
+    //public void CheckMate()
+    //{
+    //    if (check())
+    //    {
+    //        Debug.Log("checkmate");
+    //        Debug.Log(currentPlayer.name + " wins!");
+    //        Destroy(board.GetComponent<TileSelector>());
+    //        Destroy(board.GetComponent<MoveSelector>());
+    //    }
+    //}
         /*
          public boolean checkmated() {
             a
