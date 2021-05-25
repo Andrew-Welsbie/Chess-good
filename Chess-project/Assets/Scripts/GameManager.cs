@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject blackPawn;
 
     private GameObject[,] pieces;
+    public string[,] gameBoard;
     private List<GameObject> movedPawns;
 
     public GameObject[] freds;
@@ -312,8 +313,14 @@ public class GameManager : MonoBehaviour
             ShowFirstPersonView();
         }
         Player tempPlayer = currentPlayer;
-        check(false);
-        
+        bool isInCheck = GameManager.instance.OtherKingInCheck();
+
+        if (isInCheck)
+        {
+            Debug.Log("check");
+
+        }
+
         currentPlayer = otherPlayer;
         otherPlayer = tempPlayer;
         
@@ -342,61 +349,190 @@ public class GameManager : MonoBehaviour
         CamPlace = false;
     }
 
-    //public bool checkmate()
-    //{
-    //    bool inCheckmate = true;
-
-    //    List<GameObject> ps = currentPlayer.getPieces();
-    //    List<GameObject> ps2 = otherPlayer.getPieces();
-    //    List<GameObject> psTemp = new List<GameObject>();
-    //    foreach (GameObject p in ps)
-    //    {
-
-    //    }
-    //    List<GameObject> ps2Temp = otherPlayer.getPieces();
-
-    //    //GameObject king = new GameObject();
-    //    //Vector2Int kingPos = new Vector2Int();
-
-    //    foreach (GameObject p in ps)
-    //    {
-    //        Debug.Log("CHECKMATE!!!!!!!!!");
-    //    }
 
 
-
-    //    return inCheckmate;
-    //}
-
-    public bool check(bool flip)
+    public bool check()
     {
+        //Vector2Int piecePos = Geometry.GridFromPoint(piece.transform.position);
+        gameBoard = new string[8, 8];
+
+        for (int x = 0; x < 8; x++)
+        {
+            for (int y = 0; y < 8; y++)
+            {
+
+                gameBoard[x, y] = "none";
+            }
+        }
+
+
         List<GameObject> ps;
         List<GameObject> ps2;
-
-        if (flip == false) {
         ps = currentPlayer.getPieces();
         ps2 = otherPlayer.getPieces();
-        }
-        else
+
+        List<GameObject> ps3 = new List<GameObject>();
+
+        for (int i = 0; i < ps2.ToArray().Length; i++)
         {
-            ps2 = currentPlayer.getPieces();
-            ps = otherPlayer.getPieces();
+            ps3.Add(ps2[i]);
+        }
+        for (int i = 0; i < ps.ToArray().Length; i++)
+        {
+            ps3.Add(ps[i]);
         }
 
+        Vector2Int kingPos = new Vector2Int();
+
+        for (int i = 0; i < ps3.ToArray().Length; i++)
+        {
+            GameObject a = ps3[i];
+            Vector2Int aPos = Geometry.GridFromPoint(a.transform.position);
+            if (ps3[i].name.Contains("King"))
+            {
+                if (ps3[i].name.Contains("Black") && currentPlayer.name == "black") {
+                    kingPos = Geometry.GridFromPoint(ps3[i].transform.position);
+
+                }
+                if (ps3[i].name.Contains("White") && currentPlayer.name == "white")
+                {
+                    kingPos = Geometry.GridFromPoint(ps3[i].transform.position);
+
+                }
+
+            }
+
+            gameBoard[aPos.x, aPos.y] = ps3[i].name;
+
+        }
+
+        // fake move piece
+        
+        // gameBoard[move.x, move.y] = gameBoard[piecePos.x, piecePos.y];
+       
+        
+        //gameBoard[piecePos.x, piecePos.y] = "none";
+   
+
+
+
+        Vector2Int[] directs =
+        {
+            new Vector2Int(1,0),
+            new Vector2Int(-1,0),
+            new Vector2Int(0,1),
+            new Vector2Int(0,-1),
+            new Vector2Int(1,1),
+            new Vector2Int(-1,-1),
+            new Vector2Int(1,-1),
+            new Vector2Int(-1,1)
+        };
+
+        foreach(Vector2Int dir in directs)
+        {
+            for (int i = 1; i < 8; i++)
+            {
+                Vector2Int newPos = new Vector2Int();
+                newPos = kingPos + dir * i;
+                if (newPos.x > 7 || newPos.x < 0 || newPos.y > 7 || newPos.y < 0)
+                {
+                    continue;
+                }
+                if (gameBoard[newPos.x, newPos.y] != "none")
+                {
+                    string name = gameBoard[newPos.x, newPos.y].ToLower();
+                    if (name.Contains(currentPlayer.name))
+                    {
+                        
+                        break;
+
+                    }
+                    else // other team
+                    {
+                        if (name.Contains("rook") && System.Math.Abs(dir.x) != System.Math.Abs(dir.y))
+                        {
+                            return true;
+                        }
+                        if (name.Contains("bishop") && System.Math.Abs(dir.x) == System.Math.Abs(dir.y))
+                        {
+                            return true;
+                        }
+                        if (name.Contains("queen"))
+                        {
+                            return true;
+                        }
+                        if (name.Contains("king") && i == 1)
+                        {
+                            return true;
+                        }
+                        if (name.Contains("pawn") && i == 1) // MAKE FORWARD DIR only
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+           
+        }
+
+        Vector2Int[] directs2 =
+        {
+            new Vector2Int(1,2),
+            new Vector2Int(1,-2),
+            new Vector2Int(-1,2),
+            new Vector2Int(-1,-2),
+            new Vector2Int(2,1),
+            new Vector2Int(2,-1),
+            new Vector2Int(-2,1),
+            new Vector2Int(-2,-1)
+        };
+
+        foreach (Vector2Int dir in directs2)
+        {
+            Vector2Int newPos = new Vector2Int();
+            newPos = kingPos + dir;
+            if (newPos.x > 7 || newPos.x < 0 || newPos.y > 7 || newPos.y < 0)
+            {
+                continue;
+            }
+            string name = gameBoard[newPos.x, newPos.y].ToLower();
+            if (name.Contains(otherPlayer.name))
+            {
+                if (name.Contains("knight"))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public bool OtherKingInCheck()
+    {
+
+
+        List<GameObject> ps = currentPlayer.getPieces();
+        List<GameObject> ps2 = otherPlayer.getPieces();
         GameObject king = new GameObject();
         Vector2Int kingPos = new Vector2Int();
         for (int i = 0; i < ps2.ToArray().Length; i++)
         {
             if (i < ps2.ToArray().Length)
             {
+
                 if (ps2[i].name.Contains("King"))
                 {
-                    
+                   
                     king = ps2[i];
+                    
                     kingPos = Geometry.GridFromPoint(king.transform.position);
                     
                 }
+
+
             }
+
         }
 
         List<Vector2Int> moveLocations4 = new List<Vector2Int>();
@@ -415,79 +551,22 @@ public class GameManager : MonoBehaviour
                 }
                 counter = counter + 1;
             }
-           
-            
+
+
         }
+
+
+
 
 
         bool incheck = false;
         if (moveLocationsThatWorks.Contains(kingPos))
         {
 
-            Debug.Log("check");
+          
             incheck = true;
-
         }
-
-
-        
         return incheck;
-
-        
+    }
+}
     
-
-
-    }
-    //public void CheckMate()
-    //{
-    //    if (check())
-    //    {
-    //        Debug.Log("checkmate");
-    //        Debug.Log(currentPlayer.name + " wins!");
-    //        Destroy(board.GetComponent<TileSelector>());
-    //        Destroy(board.GetComponent<MoveSelector>());
-    //    }
-    //}
-        /*
-         public boolean checkmated() {
-            a
-        }
-         */
-        /*public boolean checkmated(Player player) {
-      if (!player.getKing().inCheck() || player.isStalemated()) {
-          return false; //not checkmate if we are not 
-                        //in check at all or we are stalemated.
-      }
-
-      //therefore if we get here on out, we are currently in check...
-
-      Pieces myPieces = player.getPieces();
-
-      for (Piece each : myPieces) {
-
-          each.doMove(); //modify the state of the board
-
-          if (!player.getKing().inCheck()) { //now we can check the modified board
-              each.undoMove(); //undo, we dont want to change the board
-              return false;
-              //not checkmate, we can make a move, 
-              //that results in our escape from checkmate.
-          }
-
-          each.undoMove();
-
-      }
-      return true; 
-      //all pieces have been examined and none can make a move and we have       
-      //confimred earlier that we have been previously checked by the opponent
-      //and that we are not in stalemate.
-    }
-    */
-    }
-
-
-
-
-
-
-// GIT TEST

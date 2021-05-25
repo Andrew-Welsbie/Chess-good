@@ -26,6 +26,7 @@ public class MoveSelector : MonoBehaviour
 
     private GameObject tileHighlight;
     private GameObject movingPiece;
+    private Vector2Int posOld;
     private List<Vector2Int> moveLocations;
     
     private List<GameObject> locationHighlights;
@@ -51,7 +52,6 @@ public class MoveSelector : MonoBehaviour
         {
             Vector3 point = hit.point;
             Vector2Int gridPoint = Geometry.GridFromPoint(point);
-            
             tileHighlight.SetActive(true);
             tileHighlight.transform.position = Geometry.PointFromGrid(gridPoint);
             if (Input.GetMouseButtonDown(0))
@@ -74,51 +74,63 @@ public class MoveSelector : MonoBehaviour
 
 
 
+
                 if (GameManager.instance.PieceAtGrid(gridPoint) == null)
                 {
                     GameObject pieceObject = movingPiece;
                     Piece piece = pieceObject.GetComponent<Piece>();
 
-
                     
+
+
                     GameObject[,] pieces = GameManager.instance.getPieces();
-                    Vector2Int gpCopy = gridPoint;
 
+                   
+                    //  addsd
+                    
+                        GameManager.instance.Move(movingPiece, gridPoint);
 
-                    GameManager.instance.Move(movingPiece, gridPoint);
-                    bool isInCheck = GameManager.instance.check(true);
+                        if (gridPoint.y == 0)
+                        {
+                            GameManager.instance.PromoteBlack(movingPiece, gridPoint);
+                        }
+                        if (gridPoint.y == 7)
+                        {
+                            GameManager.instance.PromoteWhite(movingPiece, gridPoint);
+                        }
                     
-                    if (isInCheck)
-                    {
-                        Debug.Log("that would be self killing....");
-                        GameManager.instance.Move(movingPiece, gpCopy);
-                    }
                     
-                    if (gridPoint.y == 0)
-                    {
-                        GameManager.instance.PromoteBlack(movingPiece, gridPoint);
-                    }
-                    if (gridPoint.y == 7)
-                    {
-                        GameManager.instance.PromoteWhite(movingPiece, gridPoint);
-                    }
                     
                 }
                 
                 else
                 {
                     
-                    GameManager.instance.CapturePieceAt(gridPoint);
-                    GameManager.instance.Move(movingPiece, gridPoint);
+                    
+                    
+                        GameManager.instance.CapturePieceAt(gridPoint);
+
+                        GameManager.instance.Move(movingPiece, gridPoint);
+                    
+                    
                     
 
                 }
 
-                
 
+                bool isInCheck2 = GameManager.instance.check();
+                if (isInCheck2)
+                {
+                    Debug.Log("CANT MOVE INTO CHECK");
+                    GameManager.instance.Move(movingPiece, posOld);
 
-                // Reference Point 3: capture enemy piece here later
-                ExitState();
+                }
+                else
+                {
+                    // Reference Point 3: capture enemy piece here later
+                    ExitState();
+                }
+
             }
         }
         else
@@ -146,6 +158,7 @@ public class MoveSelector : MonoBehaviour
     public void EnterState(GameObject piece)
     {
         movingPiece = piece;
+        posOld = Geometry.GridFromPoint(movingPiece.transform.position);
         this.enabled = true;
 
         moveLocations = GameManager.instance.MovesForPiece(movingPiece);
@@ -155,6 +168,7 @@ public class MoveSelector : MonoBehaviour
         {
             CancelMove();
         }
+
         
 
         foreach (Vector2Int loc in moveLocations)

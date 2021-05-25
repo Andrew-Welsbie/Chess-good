@@ -51,7 +51,9 @@ public class PauseMenu : MonoBehaviour
     }
     public void QuitGame()
     {
-        Debug.Log("Quitting game...");
-        Application.Quit();
+        Debug.Log("FF 15");
+        //Destroy(board.GetComponent<TileSelector>());
+        //Destroy(board.GetComponent<MoveSelector>());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
