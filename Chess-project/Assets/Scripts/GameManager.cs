@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -171,7 +172,7 @@ public class GameManager : MonoBehaviour
       
 
     
-    public void CapturePieceAt(Vector2Int gridPoint)
+    public bool CapturePieceAt(Vector2Int gridPoint)
     {
         GameObject pieceToCapture = PieceAtGrid(gridPoint);
         if (pieceToCapture.GetComponent<Piece>().type == PieceType.King)
@@ -179,6 +180,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(currentPlayer.name + " wins!");
             Destroy(board.GetComponent<TileSelector>());
             Destroy(board.GetComponent<MoveSelector>());
+            return true;
         }
         currentPlayer.capturedPieces.Add(pieceToCapture);
         pieces[gridPoint.x, gridPoint.y] = null;
@@ -193,7 +195,7 @@ public class GameManager : MonoBehaviour
         Destroy(pieceToCapture);
         List<GameObject> ps2 = otherPlayer.getPieces();
         ps2.Remove(pieceToCapture);
-
+        return false;
     }
 
     public void SelectPiece(GameObject piece)
@@ -323,10 +325,10 @@ public class GameManager : MonoBehaviour
 
         currentPlayer = otherPlayer;
         otherPlayer = tempPlayer;
+
+
+
         
-
-
-
     }
 
     // Call this function to disable FPS camera,

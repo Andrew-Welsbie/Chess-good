@@ -56,4 +56,18 @@ public class PauseMenu : MonoBehaviour
         //Destroy(board.GetComponent<MoveSelector>());
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
+    public void WhiteWins()
+    {
+        Player current = GameManager.instance.currentPlayer;
+        if(current.name == "white")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
+        }
+
+    }
+
 }

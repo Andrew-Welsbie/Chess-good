@@ -81,6 +81,10 @@
     <Compile Include="Assets/Scripts/MoveSelector.cs" />
     <Compile Include="Assets/Scripts/Pieces/Knight.cs" />
     <Compile Include="Assets/Back.cs" />
+    <Compile Include="Assets/InCheckDisplay2.cs" />
+    <Compile Include="Assets/winScreen.cs" />
+    <Compile Include="Assets/menuSwitch.cs" />
+    <Compile Include="Assets/menuSwitchWhite.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

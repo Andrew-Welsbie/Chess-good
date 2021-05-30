@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - CameraSwitch
     - Check
     - GameManager
+    - InCheckDisplay2
     - King
     - Knight
     - LoadBack
@@ -19,6 +20,8 @@ ScriptsOnlyBuild:
     - Rook
     - RuleMenu
     - TileSelector
+    - menuSwitch
+    - menuSwitchWhite
     - scene
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
@@ -84,13 +87,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2566}
     - Class: 114
-      Script: {instanceID: 2732}
+      Script: {instanceID: 2734}
     - Class: 114
-      Script: {instanceID: 2820}
+      Script: {instanceID: 2822}
     - Class: 114
-      Script: {instanceID: 3130}
+      Script: {instanceID: 3132}
     - Class: 114
-      Script: {instanceID: 3622}
+      Script: {instanceID: 3624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -141,6 +144,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1632}
     - Class: 114
+      Script: {instanceID: 1740}
+    - Class: 114
       Script: {instanceID: 2002}
     - Class: 114
       Script: {instanceID: 2096}
@@ -153,29 +158,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2416}
     - Class: 114
+      Script: {instanceID: 2462}
+    - Class: 114
       Script: {instanceID: 2566}
     - Class: 114
       Script: {instanceID: 2652}
     - Class: 114
-      Script: {instanceID: 2732}
+      Script: {instanceID: 2662}
     - Class: 114
-      Script: {instanceID: 2768}
+      Script: {instanceID: 2734}
     - Class: 114
-      Script: {instanceID: 2820}
+      Script: {instanceID: 2770}
     - Class: 114
-      Script: {instanceID: 3290}
+      Script: {instanceID: 2822}
     - Class: 114
-      Script: {instanceID: 3506}
+      Script: {instanceID: 3292}
     - Class: 114
-      Script: {instanceID: 3784}
+      Script: {instanceID: 3508}
     - Class: 114
-      Script: {instanceID: 3870}
+      Script: {instanceID: 3786}
     - Class: 114
-      Script: {instanceID: 3966}
+      Script: {instanceID: 3872}
     - Class: 114
-      Script: {instanceID: 4160}
+      Script: {instanceID: 3968}
     - Class: 114
-      Script: {instanceID: 42300}
+      Script: {instanceID: 4162}
+    - Class: 114
+      Script: {instanceID: 35164}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 124
@@ -197,6 +206,63 @@ ScriptsOnlyBuild:
     - Class: 258
       Script: {instanceID: 0}
     - Class: 850595691
+      Script: {instanceID: 0}
+    Assets/Scenes/blackWin.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1488}
+    - Class: 114
+      Script: {instanceID: 1740}
+    - Class: 114
+      Script: {instanceID: 2314}
+    - Class: 114
+      Script: {instanceID: 2416}
+    - Class: 114
+      Script: {instanceID: 2462}
+    - Class: 114
+      Script: {instanceID: 2566}
+    - Class: 114
+      Script: {instanceID: 2734}
+    - Class: 114
+      Script: {instanceID: 2822}
+    - Class: 114
+      Script: {instanceID: 3624}
+    - Class: 114
+      Script: {instanceID: 40980}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
     Assets/Scenes/mainMenu.unity:
     - Class: 1
@@ -238,21 +304,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2566}
     - Class: 114
-      Script: {instanceID: 2732}
+      Script: {instanceID: 2734}
     - Class: 114
-      Script: {instanceID: 2820}
+      Script: {instanceID: 2822}
     - Class: 114
-      Script: {instanceID: 3074}
+      Script: {instanceID: 3076}
     - Class: 114
-      Script: {instanceID: 3396}
+      Script: {instanceID: 3398}
     - Class: 114
-      Script: {instanceID: 3476}
+      Script: {instanceID: 3478}
     - Class: 114
-      Script: {instanceID: 3622}
+      Script: {instanceID: 3624}
     - Class: 114
-      Script: {instanceID: 3714}
+      Script: {instanceID: 3716}
     - Class: 114
-      Script: {instanceID: 3954}
+      Script: {instanceID: 3956}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -303,13 +369,70 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2566}
     - Class: 114
-      Script: {instanceID: 2732}
+      Script: {instanceID: 2734}
     - Class: 114
-      Script: {instanceID: 2820}
+      Script: {instanceID: 2822}
     - Class: 114
-      Script: {instanceID: 3622}
+      Script: {instanceID: 3624}
     - Class: 114
-      Script: {instanceID: 4318}
+      Script: {instanceID: 4320}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/whiteWIns.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1488}
+    - Class: 114
+      Script: {instanceID: 1740}
+    - Class: 114
+      Script: {instanceID: 2314}
+    - Class: 114
+      Script: {instanceID: 2416}
+    - Class: 114
+      Script: {instanceID: 2462}
+    - Class: 114
+      Script: {instanceID: 2566}
+    - Class: 114
+      Script: {instanceID: 2734}
+    - Class: 114
+      Script: {instanceID: 2822}
+    - Class: 114
+      Script: {instanceID: 3624}
+    - Class: 114
+      Script: {instanceID: 42288}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -597,6 +720,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Bishop
+  - hash:
+      serializedVersion: 2
+      Hash: d2ba5324af7ea21bf8fdc48ba23f326f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Check
   - hash:
       serializedVersion: 2
       Hash: 748dd2a2a28da4e618912da5ac45684b
@@ -959,14 +1088,34 @@ ScriptsOnlyBuild:
     className: Back
   - hash:
       serializedVersion: 2
-      Hash: d2ba5324af7ea21bf8fdc48ba23f326f
+      Hash: 7e2edb7185fb7b615dc11e0bbe8732fe
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Check
+    className: InCheckDisplay2
+  - hash:
+      serializedVersion: 2
+      Hash: 91412e096f50478fbbeed4f4ea79093d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: winScreen
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: menuSwitch
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: menuSwitchWhite
   platform: 2
   scenePathNames:
   - Assets/Scenes/mainMenu.unity
   - Assets/Scenes/Main.unity
   - Assets/Scenes/rules.unity
   - Assets/Scenes/LoadMenu.unity
+  - Assets/Scenes/blackWin.unity
+  - Assets/Scenes/whiteWIns.unity
   playerPath: /Users/andrewwelsbie/Downloads/chessTest/Soft-Dev-Chess/buildSettings.app

@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadMenu.unity
     guid: f19b940e5544b4331afb2b3d094359dd
+  - enabled: 1
+    path: Assets/Scenes/blackWin.unity
+    guid: 2974e6f86f07447b2bdb87115c3ed7ce
+  - enabled: 1
+    path: Assets/Scenes/whiteWIns.unity
+    guid: 21fa4f047288b4d81a0bdce1e2949d83
   m_configObjects: {}
